@@ -1,0 +1,153 @@
+ /* ---------- Base reset / typography ---------- */
+* {
+  box-sizing: border-box;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #1a1a1a;
+  background: #ffffff;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+/* ---------- Details / summary ---------- */
+
+details {
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  background: #fafafa;
+}
+
+summary {
+  padding: 8px 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+details[open] summary {
+  border-bottom: 1px solid #e5e5e5;
+  background: #f5f5f5;
+}
+
+details > form {
+  padding: 10px;
+}
+
+/* ---------- Forms ---------- */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #4c8df6;
+  box-shadow: 0 0 0 2px rgba(76, 141, 246, 0.2);
+}
+
+/* ---------- Combobox wrapper ---------- */
+
+.combobox {
+  position: relative;
+}
+
+#dev-note-list, #issues-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  z-index: 10;
+  background: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+#dev-note-list button, #issues-list button {
+  padding: 6px 8px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-align: left;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+
+#dev-note-list button:hover, #issues-list button:hover {
+  background: #eee;
+}
+
+#dev-note-list button.selected, #issues-list button.selected {
+  background: #d4e3fc;
+  font-weight: bold;
+}
+
+/* ---------- Buttons ---------- */
+
+button[type="submit"] {
+  align-self: flex-start;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+
+  background: #4c8df6;
+  color: #ffffff;
+}
+
+button[type="submit"]:hover {
+  background: #3b7be0;
+}
+
+button[type="submit"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 141, 246, 0.4);
+}
+
+/* ---------- Utility ---------- */
+
+.hidden {
+  display: none;
+}

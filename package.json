@@ -1,0 +1,68 @@
+{
+  "name": "a11y-annotations",
+  "version": "1.0.0",
+  "description": "Your Figma Plugin",
+  "main": "code.js",
+  "scripts": {
+    "build": "npm run build:ui && npm run build:code",
+    "build:ui": "node build-ui.cjs",
+    "build:code": "esbuild src/code.ts --bundle --outfile=dist/code.js --target=es6",
+    "watch": "concurrently \"npm run watch:code\" \"npm run watch:ui\"",
+    "watch:code": "esbuild src/code.ts --bundle --outfile=dist/code.js --target=es6 --watch",
+    "watch:ui": "nodemon --watch src --ext html,js,css --exec \"npm run build:ui\""
+  },
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "@figma/eslint-plugin-figma-plugins": "*",
+    "@figma/plugin-typings": "*",
+    "@types/node": "^25.0.10",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.27.2",
+    "eslint": "^8.54.0",
+    "nodemon": "^3.1.11",
+    "typescript": "^5.3.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@figma/figma-plugins/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "root": true,
+    "ignorePatterns": [
+      "*.html",
+      "*.cjs"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.js"
+        ],
+        "env": {
+          "browser": true,
+          "node": true
+        }
+      }
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "caughtErrorsIgnorePattern": "^_"
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "git": "^0.1.5"
+  }
+}

@@ -1,0 +1,16 @@
+{
+    "devNotes": [
+      {
+          "text": "Since this icon does not convey any meaningful information, we can hide this icon from assistive technologies using the aria-hidden=\"true\" attribute.",
+          "tags": ["icon"]
+      },
+      {
+          "text": "Because this link opens in a new tab, we will want to add screen reader only text to the end of the link content to convey this expectation to screen reader users, e.g. <span class=\"sr-only\">(opens in a new tab)</span>",
+          "tags": ["link"]
+      },
+      {
+          "text": "Ensure sufficient color contrast",
+          "tags": []  
+      }
+    ]
+  }
