@@ -19,29 +19,6 @@ h2 {
   margin: 0 0 12px;
 }
 
-/* ---------- Details / summary ---------- */
-
-details {
-  border: 1px solid #e5e5e5;
-  border-radius: 6px;
-  margin-bottom: 12px;
-  background: #fafafa;
-}
-
-summary {
-  padding: 8px 10px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-details[open] summary {
-  border-bottom: 1px solid #e5e5e5;
-  background: #f5f5f5;
-}
-
-details > form {
-  padding: 10px;
-}
 
 /* ---------- Forms ---------- */
 
@@ -87,7 +64,7 @@ select:focus {
   position: relative;
 }
 
-#dev-note-list, #issues-list {
+#dev-note-list {
   position: absolute;
   top: 100%;
   left: 0;
@@ -103,7 +80,7 @@ select:focus {
   overflow-y: auto;
 }
 
-#dev-note-list button, #issues-list button {
+#dev-note-list button {
   padding: 6px 8px;
   cursor: pointer;
   border: none;
@@ -113,11 +90,11 @@ select:focus {
   border-bottom: 1px solid #ccc;
 }
 
-#dev-note-list button:hover, #issues-list button:hover {
+#dev-note-list button:hover{
   background: #eee;
 }
 
-#dev-note-list button.selected, #issues-list button.selected {
+#dev-note-list button.selected {
   background: #d4e3fc;
   font-weight: bold;
 }

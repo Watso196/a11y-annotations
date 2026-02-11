@@ -1,12 +1,9 @@
 // DOM VARIABLES
   const devNoteInput = document.getElementById('dev-note');
-  const issuesInput = document.getElementById('issues');
   const devNoteListbox = document.getElementById('dev-note-list');
-  const issuesListbox = document.getElementById('issues-list');
 
   // STATE MANAGEMENT
   let devNotesSelectedOptionIndex = -1;
-  let issuesSelectedOptionIndex = -1;
 
   // LOAD DATA INTO LISTBOXES
     function populateListbox(listbox, items, prefix) {
@@ -67,7 +64,7 @@
     listbox.classList.remove('hidden');
   };
 
-  const listboxKeyDownHandler = function(event, selectedOptionIndex) {
+  const listboxKeyDownHandler = function(event) {
     const listbox = document.getElementById(event.target.getAttribute('aria-controls'));
     const visibleOptions = Array.from(listbox.querySelectorAll('button:not(.hidden)'));
     
@@ -76,33 +73,33 @@
     switch(event.key) {
       case 'ArrowDown':
         event.preventDefault();
-        selectedOptionIndex = Math.min(selectedOptionIndex + 1, visibleOptions.length - 1);
-        updateSelectedOption(visibleOptions, selectedOptionIndex);
-        this.setAttribute('aria-activedescendant', visibleOptions[selectedOptionIndex]?.id || '');
+        devNotesSelectedOptionIndex = Math.min(devNotesSelectedOptionIndex + 1, visibleOptions.length - 1);
+        updateSelectedOption(visibleOptions, devNotesSelectedOptionIndex);
+        this.setAttribute('aria-activedescendant', visibleOptions[devNotesSelectedOptionIndex]?.id || '');
         break;
         
       case 'ArrowUp':
         event.preventDefault();
-        selectedOptionIndex = Math.max(selectedOptionIndex - 1, 0);
-        updateSelectedOption(visibleOptions, selectedOptionIndex);
-        this.setAttribute('aria-activedescendant', visibleOptions[selectedOptionIndex]?.id || '');
+        devNotesSelectedOptionIndex = Math.max(devNotesSelectedOptionIndex - 1, 0);
+        updateSelectedOption(visibleOptions, devNotesSelectedOptionIndex);
+        this.setAttribute('aria-activedescendant', visibleOptions[devNotesSelectedOptionIndex]?.id || '');
         break;
         
       case 'Enter':
         event.preventDefault();
-        if (selectedOptionIndex >= 0 && visibleOptions[selectedOptionIndex]) {
-          this.value = visibleOptions[selectedOptionIndex].textContent;
+        if (devNotesSelectedOptionIndex >= 0 && visibleOptions[devNotesSelectedOptionIndex]) {
+          this.value = visibleOptions[devNotesSelectedOptionIndex].textContent;
           listbox.classList.add('hidden');
-          selectedOptionIndex = -1;
-          updateSelectedOption(visibleOptions, selectedOptionIndex);
+          devNotesSelectedOptionIndex = -1;
+          updateSelectedOption(visibleOptions, devNotesSelectedOptionIndex);
         }
         break;
         
       case 'Escape':
         event.preventDefault();
         listbox.classList.add('hidden');
-        selectedOptionIndex = -1;
-        updateSelectedOption(visibleOptions, selectedOptionIndex);
+        devNotesSelectedOptionIndex = -1;
+        updateSelectedOption(visibleOptions, devNotesSelectedOptionIndex);
         break;
     }
   };
@@ -128,13 +125,10 @@
     if (msg.type === "loadData") {
         // Populate listboxes when data arrives from code.ts
         populateListbox(devNoteListbox, msg.devNotes, 'dev-note');
-        populateListbox(issuesListbox, msg.issues, 'issue');
     } else if (msg.type === "clearTextField") {
         if (msg.field === "dev-note") {
         devNoteInput.value = '';
-        } else if (msg.field === "issue") {
-        issuesInput.value = '';
-        }
+        } 
     }
     };
 
@@ -147,32 +141,11 @@
     parent.postMessage({ pluginMessage: { type: 'devNote', text: suggestionText } }, '*');
   });
 
-  document.getElementById('create-issue').addEventListener('click', function(event) {
-    event.preventDefault();
-    let issueText;
-    issueText = issuesInput.value;
-
-    parent.postMessage({ pluginMessage: { type: 'issue', text: issueText } }, '*');
-  });
-
   devNoteInput.addEventListener('input', listboxFilterHandler);
-  issuesInput.addEventListener('input', listboxFilterHandler);
-
   devNoteListbox.addEventListener('click', listboxItemClickHandler);
-  issuesListbox.addEventListener('click', listboxItemClickHandler);
-
   devNoteInput.addEventListener('focus', comboboxShowList);
-  issuesInput.addEventListener('focus', comboboxShowList);
-
   devNoteInput.addEventListener('blur', comboboxHideList);
-  issuesInput.addEventListener('blur', comboboxHideList);
-
-  devNoteInput.addEventListener('keydown', (event) => listboxKeyDownHandler(event, devNotesSelectedOptionIndex));
-  issuesInput.addEventListener('keydown', (event) => listboxKeyDownHandler(event, issuesSelectedOptionIndex));
-
+  devNoteInput.addEventListener('keydown', listboxKeyDownHandler);
   devNoteInput.addEventListener('input', function() {
     devNotesSelectedOptionIndex = -1;
-  });
-  issuesInput.addEventListener('input', function() {
-    issuesSelectedOptionIndex = -1;
   });

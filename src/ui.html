@@ -1,11 +1,9 @@
 <!-- INJECT_CSS -->
 
 <h2>Accessibility Annotations</h2>
-<details>
-  <summary>Dev Note</summary>
   <form>
     <div id="dev-note-container">
-      <label for="dev-note">Predefined Dev Notes</label>
+      <label for="dev-note">Dev Notes</label>
       <div class="combobox">
         <textarea
           id="dev-note"
@@ -23,30 +21,5 @@
     </div>
     <button type="submit" id="create-suggestion">Create Dev Note</button>
   </form>
-</details>
-<details>
-  <summary>Issue</summary>
-  <form>
-    <div id="issues-container">
-      <label for="issues">Predefined Issues</label>
-      <div class="combobox">
-        <textarea
-          id="issues"
-          name="issues"
-          aria-autocomplete="list"
-          aria-expanded="false"
-          role="combobox"
-          aria-controls="issues-list"
-        ></textarea>
-        <div id="issues-errors" aria-live="assertive">
-
-        </div>
-
-        <div role="listbox" aria-labelledby="issues" id="issues-list" class="hidden"></div>
-      </div>
-    </div>
-    <button type="submit" id="create-issue">Create Issue</button>
-  </form>
-</details>
 
 <!-- INJECT_JS -->

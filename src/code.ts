@@ -7,7 +7,6 @@
 // full browser environment (See https://www.figma.com/plugin-docs/how-plugins-run).
 
 import devNotesData from './devNotesData.json';
-import issuesData from './issuesData.json';
 
 // This shows the HTML page in "ui.html".
 figma.showUI(__html__, {
@@ -67,8 +66,7 @@ function findFirstTextNode(node: BaseNode): TextNode | null {
 // Send data to UI when it loads
 figma.ui.postMessage({ 
   type: 'loadData', 
-  devNotes: devNotesData.devNotes,
-  issues: issuesData.issues
+  devNotes: devNotesData.devNotes
 }); 
 
 // Calls to "parent.postMessage" from within the HTML page will trigger this
