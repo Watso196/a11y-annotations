@@ -1,130 +1,366 @@
- /* ---------- Base reset / typography ---------- */
-* {
+/* ============================================================
+   A11y Annotations Plugin — UI Styles
+   Aesthetic: Warm, craft-y, designer-friendly
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+/* ---------- Design tokens ---------- */
+:root {
+  --bg:             #FBF9F5;
+  --surface:        #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --border:         #DDD8CE;
+  --border-focus:   #152D54;
+
+  --text-primary:   #152D54;
+  --text-secondary: #2E4A78;
+  --text-muted:     #516A92;
+
+  --accent:         #C8960F;
+  --accent-hover:   #A67D0D;
+  --accent-soft:    #FFF8E7;
+
+  --tag-bg:         #EEF1F6;
+  --tag-text:       #3A4D6E;
+
+  --tab-active-bg:    #152D54;
+  --tab-active-text:  #FFFFFF;
+  --tab-inactive-text: #2E4A78;
+
+  --approve-bg:     transparent;
+  --approve-hover:  var(--text-primary);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.03);
+  --shadow-md: 0 4px 14px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+}
+
+/* ---------- Base reset ---------- */
+*, *::before, *::after {
   box-sizing: border-box;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 12px;
-  font-size: 14px;
-  line-height: 1.4;
-  color: #1a1a1a;
-  background: #ffffff;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
 }
 
-h2 {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 12px;
-}
-
-
-/* ---------- Forms ---------- */
-
-form {
+/* ---------- Plugin shell ---------- */
+.plugin-shell {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  min-height: 100vh;
+  padding-bottom: 24px;
 }
 
-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 500;
-  margin-bottom: 4px;
-  color: #333;
+/* ---------- Header ---------- */
+.plugin-header {
+  padding: 16px 16px 13px;
+  border-bottom: 2px solid var(--accent);
+  background: var(--accent-soft);
 }
 
-textarea,
-select {
-  width: 100%;
-  padding: 8px;
+.header-title {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+/* ---------- Tab nav ---------- */
+.tab-nav {
+  display: flex;
+  gap: 6px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-bottom: none;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 6px;
+  padding: 6px 14px;
+  font-family: 'DM Sans', sans-serif;
   font-size: 14px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background: #fff;
+  font-weight: 500;
+  border-radius: 100px;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  color: var(--tab-inactive-text);
+  background: transparent;
 }
 
-textarea {
+.tab-btn:hover {
+  background: var(--tag-bg);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.tab-btn.active {
+  background: var(--tab-active-bg);
+  color: var(--tab-active-text);
+  border-color: var(--tab-active-bg);
+}
+
+.tab-btn:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+.tab-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* ---------- Tab panels ---------- */
+.tab-panel {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tab-panel[hidden] {
+  display: none;
+}
+
+.panel-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  padding: 12px 14px;
+  background: var(--accent-soft);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent);
+}
+
+/* ---------- Field ---------- */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.field-textarea {
+  width: 100%;
+  min-height: 72px;
+  padding: 10px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
   resize: vertical;
-  min-height: 60px;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-textarea:focus,
-select:focus {
+.field-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.field-textarea:focus {
   outline: none;
-  border-color: #4c8df6;
-  box-shadow: 0 0 0 2px rgba(76, 141, 246, 0.2);
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(21, 45, 84, 0.2);
 }
 
-/* ---------- Combobox wrapper ---------- */
+.field-errors {
+  font-size: 14px;
+  color: #B33A2B;
+  min-height: 0;
+}
 
+/* ---------- Suggestion list ---------- */
 .combobox {
   position: relative;
 }
 
-#dev-note-list {
+.suggestion-list {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
-
-  z-index: 10;
-  background: white;
-  border: 1px solid #ccc;
+  z-index: 20;
+  background: var(--surface-raised);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
   list-style: none;
-  margin: 4px 0 0;
-  padding: 0;
-  max-height: 450px;
+  max-height: 420px;
   overflow-y: auto;
+  padding: 4px;
 }
 
-#dev-note-list button {
-  padding: 6px 8px;
-  cursor: pointer;
-  border: none;
-  background: none;
-  text-align: left;
+.suggestion-list.hidden {
+  display: none;
+}
+
+.suggestion-list button {
+  display: block;
   width: 100%;
-  border-bottom: 1px solid #ccc;
-}
-
-#dev-note-list button:hover{
-  background: #eee;
-}
-
-#dev-note-list button.selected {
-  background: #d4e3fc;
-  font-weight: bold;
-}
-
-/* ---------- Buttons ---------- */
-
-button[type="submit"] {
-  align-self: flex-start;
-  padding: 6px 12px;
-  font-size: 13px;
-  font-weight: 500;
-  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: none;
   border: none;
+  border-radius: var(--radius-sm);
+  text-align: left;
   cursor: pointer;
-
-  background: #4c8df6;
-  color: #ffffff;
+  transition: background 0.1s;
 }
 
-button[type="submit"]:hover {
-  background: #3b7be0;
+.suggestion-list button:hover {
+  background: var(--tag-bg);
 }
 
-button[type="submit"]:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(76, 141, 246, 0.4);
+.suggestion-list button.selected {
+  background: var(--accent-soft);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.suggestion-list button.hidden {
+  display: none;
+}
+
+/* Tags rendered inside each suggestion button */
+.suggestion-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.suggestion-tag {
+  display: inline-block;
+  padding: 2px 7px;
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--tag-text);
+  background: var(--tag-bg);
+  border-radius: 100px;
+}
+
+/* ---------- Submit button ---------- */
+.submit-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: transparent;
+  border: 2px solid var(--text-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, transform 0.1s;
+  box-shadow: var(--shadow-sm);
+}
+
+.submit-btn:hover {
+  background: var(--text-primary);
+  color: #fff;
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
+}
+
+.submit-btn:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+.btn-icon {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+/* ---------- Divider ---------- */
+.divider {
+  border: none;
+  border-top: 2px solid var(--accent);
+  margin: 4px 16px 0;
+}
+
+/* ---------- Approve section ---------- */
+.approve-section {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.approve-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--text-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: var(--shadow-sm);
+}
+
+.approve-btn:hover {
+  background: #1C3562;
+}
+
+.approve-btn:active {
+  transform: translateY(1px);
+}
+
+.approve-btn:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
 }
 
 /* ---------- Utility ---------- */
-
 .hidden {
   display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
 }

@@ -1,25 +1,79 @@
 <!-- INJECT_CSS -->
 
-<h2>Accessibility Annotations</h2>
-  <form>
-    <div id="dev-note-container">
-      <label for="dev-note">Dev Notes</label>
+<div class="plugin-shell" lang="en">
+  <header class="plugin-header">
+    <h1 class="header-title">a11y annotations</h1>
+  </header>
+
+  <nav class="tab-nav" role="tablist" aria-label="Annotation type">
+    <button class="tab-btn active" role="tab" aria-selected="true"  aria-controls="panel-web" id="tab-web">
+      Web
+    </button>
+    <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="panel-app" id="tab-app" tabindex="-1">
+      App
+    </button>
+  </nav>
+
+  <!-- WEB PANEL -->
+  <section class="tab-panel active" id="panel-web" role="tabpanel" aria-labelledby="tab-web">
+    <p class="panel-description" id="web-description">Select a layer, then choose or type a web accessibility recommendation below.</p>
+    <div class="field-group">
+      <label class="field-label" id="dev-note-label" for="dev-note">Recommendation</label>
       <div class="combobox">
         <textarea
           id="dev-note"
           name="dev-note"
+          class="field-textarea"
           aria-autocomplete="list"
           aria-expanded="false"
           role="combobox"
           aria-controls="dev-note-list"
+          aria-describedby="web-description"
         ></textarea>
-        <div id="dev-note-errors" aria-live="assertive"></div>
-
-        <div id="dev-note-notifications" aria-live="polite"></div>
-        <div role="listbox" aria-labelledby="dev-note" id="dev-note-list" class="hidden"></div>
+        <div id="dev-note-errors" aria-live="assertive" class="field-errors"></div>
+        <div id="dev-note-notifications" aria-live="polite" class="sr-only"></div>
+        <div role="listbox" aria-labelledby="dev-note-label" id="dev-note-list" class="suggestion-list hidden"></div>
       </div>
     </div>
-    <button type="submit" id="create-suggestion">Create Dev Note</button>
-  </form>
+    <button type="button" class="submit-btn" id="create-web-note">
+      + Add web annotation
+    </button>
+  </section>
+
+  <!-- APP PANEL -->
+  <section class="tab-panel" id="panel-app" role="tabpanel" aria-labelledby="tab-app" hidden>
+    <p class="panel-description" id="app-description">Select a layer, then choose or type a native app accessibility recommendation below.</p>
+    <div class="field-group">
+      <label class="field-label" id="app-note-label" for="app-note">Recommendation</label>
+      <div class="combobox">
+        <textarea
+          id="app-note"
+          name="app-note"
+          class="field-textarea"
+          aria-autocomplete="list"
+          aria-expanded="false"
+          role="combobox"
+          aria-controls="app-note-list"
+          aria-describedby="app-description"
+        ></textarea>
+        <div id="app-note-errors" aria-live="assertive" class="field-errors"></div>
+        <div id="app-note-notifications" aria-live="polite" class="sr-only"></div>
+        <div role="listbox" aria-labelledby="app-note-label" id="app-note-list" class="suggestion-list hidden"></div>
+      </div>
+    </div>
+    <button type="button" class="submit-btn" id="create-app-note">
+      + Add app annotation
+    </button>
+  </section>
+
+  <!-- APPROVE DESIGN -->
+  <hr class="divider" aria-hidden="true" />
+  <section class="approve-section" aria-label="Design approval">
+    <p class="panel-description" id="approve-description">Select a frame (or any layer within a frame) to add an accessibility approval badge.</p>
+    <button type="button" class="approve-btn" id="approve-design" aria-describedby="approve-description">
+      Approve design
+    </button>
+  </section>
+</div>
 
 <!-- INJECT_JS -->

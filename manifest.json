@@ -5,6 +5,7 @@
   "main": "dist/code.js",
   "ui": "dist/ui.html",
   "capabilities": [],
+  "permissions": ["currentuser"],
   "enableProposedApi": false,
   "documentAccess": "dynamic-page",
   "editorType": [

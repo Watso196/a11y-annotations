@@ -1,16 +1,86 @@
 {
-    "devNotes": [
-      {
-          "text": "Since this icon does not convey any meaningful information, we can hide this icon from assistive technologies using the aria-hidden=\"true\" attribute.",
-          "tags": ["icon"]
-      },
-      {
-          "text": "Because this link opens in a new tab, we will want to add screen reader only text to the end of the link content to convey this expectation to screen reader users, e.g. <span class=\"sr-only\">(opens in a new tab)</span>",
-          "tags": ["link"]
-      },
-      {
-          "text": "Ensure sufficient color contrast",
-          "tags": []  
-      }
-    ]
-  }
+  "devNotes": [
+    {
+      "text": "Since this icon does not convey any meaningful information, we can hide this icon from assistive technologies using the aria-hidden=\"true\" attribute.",
+      "tags": ["icon"]
+    },
+    {
+      "text": "Because this link opens in a new tab, we will want to add screen reader only text to the end of the link content to convey this expectation to screen reader users, e.g. <span class=\"sr-only\">(opens in a new tab)</span>",
+      "tags": ["link"]
+    },
+    {
+      "text": "Ensure sufficient color contrast between foreground text and its background, meeting a minimum ratio of 4.5:1 for normal text and 3:1 for large text.",
+      "tags": ["color", "contrast"]
+    },
+    {
+      "text": "This interactive element must be reachable and operable via keyboard. Ensure it receives focus and can be activated with Enter or Space.",
+      "tags": ["keyboard", "interactive"]
+    },
+    {
+      "text": "Provide a visible focus indicator for this element so keyboard users can see where focus is at all times.",
+      "tags": ["keyboard", "focus"]
+    },
+    {
+      "text": "This image requires a descriptive alt attribute that conveys its meaning or function to screen reader users.",
+      "tags": ["image", "alt text"]
+    },
+    {
+      "text": "Ensure this form input has a programmatically associated label using a <label> element or aria-label attribute.",
+      "tags": ["form", "label"]
+    },
+    {
+      "text": "This error message should be announced to screen reader users by associating it with the input field using aria-describedby.",
+      "tags": ["form", "error"]
+    },
+    {
+      "text": "Use a native <button> element here rather than a <div> or <span>, so that it is keyboard-operable and announced correctly by assistive technologies.",
+      "tags": ["interactive", "semantic html"]
+    },
+    {
+      "text": "This modal dialog should trap focus within it while open, and return focus to the triggering element when dismissed.",
+      "tags": ["modal", "focus management"]
+    }
+  ],
+  "appDevNotes": [
+    {
+      "text": "This icon does not convey meaningful information and should be hidden from assistive technologies. On iOS use accessibilityHidden = true; on Android set importantForAccessibility=\"no\".",
+      "tags": ["icon", "ios", "android"]
+    },
+    {
+      "text": "Ensure this interactive element meets the minimum touch target size of 44×44pt (iOS) or 48×48dp (Android) to support users with motor impairments.",
+      "tags": ["touch target", "ios", "android"]
+    },
+    {
+      "text": "Provide a meaningful accessibility label for this element. On iOS use accessibilityLabel; on Android use android:contentDescription.",
+      "tags": ["label", "ios", "android"]
+    },
+    {
+      "text": "Ensure sufficient color contrast between foreground and background, meeting a minimum ratio of 4.5:1 for normal text and 3:1 for large text, across both light and dark mode.",
+      "tags": ["color", "contrast", "dark mode"]
+    },
+    {
+      "text": "This screen should have a descriptive and unique title announced when it comes into focus, so screen reader users understand where they are in the app.",
+      "tags": ["screen", "navigation"]
+    },
+    {
+      "text": "The reading and focus order of this screen should follow the visual layout. On iOS, set accessibilityElements in the correct order; on Android use traversalBefore/traversalAfter.",
+      "tags": ["focus order", "ios", "android"]
+    },
+    {
+      "text": "When this action triggers a status change or notification, the result should be announced via an accessibility announcement. Use UIAccessibility.post on iOS or AccessibilityEvent on Android.",
+      "tags": ["announcement", "ios", "android"]
+    },
+    {
+      "text": "This image conveys meaningful content and requires a descriptive content description so it is not skipped by screen readers.",
+      "tags": ["image", "ios", "android"]
+    },
+    {
+      "text": "This custom component should expose its role and state to assistive technologies. Use accessibilityTraits/accessibilityRole on iOS or accessibilityDelegate on Android.",
+      "tags": ["custom component", "role", "ios", "android"]
+    },
+    {
+      "text": "Verify that this experience is fully operable using Switch Control (iOS) and Switch Access (Android), not just touch or voice.",
+      "tags": ["switch access", "motor", "ios", "android"]
+    }
+  ]
+}
